@@ -45,7 +45,7 @@ def print_cyber_banner():
   ╚═════╝ ╚═╝     ╚═╝╚═╝  ╚═╝    ╚══════╝ ╚═════╝ ╚═╝   ╚═╝   ╚══════╝
 [/bold cyan]
 [bold bright_magenta]  ⚡ DIGITAL FORENSICS & INCIDENT RESPONSE METADATA STUDIO v4.0 ULTIMATE ⚡ [/bold bright_magenta]
-[bold green]  [ Advanced Artifact Extractor • File Spoofing Detector • Patch Recommender ] [/bold green]
+[bold green]  [Advanced Artifact Extractor•File Spoofing Detector•Patch Recommender] [/bold green]
     """
     console.print(Panel(banner_art, border_style="bright_blue", padding=(0, 1)))
 
