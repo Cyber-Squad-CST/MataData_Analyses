@@ -1,2 +1,5 @@
-pkg install ffmpeg
-pip install ffmpeg-python rich pillow ExifRead
+ffmpeg
+ffmpeg-python 
+rich 
+pillow 
+ExifRead
