@@ -37,15 +37,15 @@ def clear_screen():
 def print_cyber_banner():
     banner_art = """
 [bold cyan]
-  ██████╗ ███████╗██╗██████╗ ███████╗██╗   ██╗██╗████████╗███████╗
-  ██╔══██╗██╔════╝██║██╔══██╗██╔════╝██║   ██║██║╚══██╔══╝██╔════╝
-  ██║  ██║█████╗  ██║██████╔╝███████╗██║   ██║██║   ██║   █████╗  
-  ██║  ██║██╔══╝  ██║██╔══██╗╚════██║██║   ██║██║   ██║   ██╔══╝  
-  ██████╔╝██║     ██║██║  ██║███████║╚██████╔╝██║   ██║   ███████╗
-  ╚═════╝ ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═╝   ╚═╝   ╚══════╝
+██████╗ ███████╗██╗██████╗   ███████╗██╗   ██╗██╗████████╗███████╗
+██╔══██╗██╔════╝██║██╔══██╗  ██╔════╝██║   ██║██║╚══██╔══╝██╔════╝
+██║  ██║█████╗  ██║██████╔╝  ███████╗██║   ██║██║   ██║   █████╗  
+██║  ██║██╔══╝  ██║██╔══██╗  ╚════██║██║   ██║██║   ██║   ██╔══╝  
+██████╔╝██║     ██║██║  ██║  ███████║╚██████╔╝██║   ██║   ███████╗
+╚═════╝ ╚═╝     ╚═╝╚═╝  ╚═╝  ╚══════╝ ╚═════╝ ╚═╝   ╚═╝   ╚══════╝
 [/bold cyan]
-[bold bright_magenta]  ⚡ DIGITAL FORENSICS & INCIDENT RESPONSE METADATA STUDIO v4.0 ULTIMATE ⚡ [/bold bright_magenta]
-[bold green]  [Advanced Artifact Extractor•File Spoofing Detector•Patch Recommender] [/bold green]
+[bold bright_magenta]        ⚡INCIDENT RESPONSE METADATA STUDIO v4.0 ULTIMATE ⚡ [/bold bright_magenta]
+[bold green]  Artifact Extractor • File Spoofing Detector • Patch Recommender[/bold green]
     """
     console.print(Panel(banner_art, border_style="bright_blue", padding=(0, 1)))
 
@@ -225,16 +225,16 @@ def generate_security_patches(report_data):
     patches = []
     
     if "Spoofing Warning" in report_data:
-        patches.append("⚠️ [bold red]Spoofing Threat Detected:[/bold red] ফাইল টাইপ ও ফাইল এক্সটেনশনে বৈসাদৃশ্য রয়েছে। এটি সম্ভাব্য ম্যালওয়্যার বা এক্সিকিউটেবল হতে পারে। স্যাণ্ডবক্সে স্ক্যান করুন।")
+        patches.append("⚠️ [bold red]Spoofing Threat Detected:[/bold red] There is a mismatch between the file type and file extension. This could potentially be malware or an executable. Scan it in a sandbox.")
     
     if "📍 GPS Coordinates" in report_data:
-        patches.append("🛡️ [bold yellow]Privacy Alert:[/bold yellow] ছবিতে সঠিক GPS জিপিএস মেটাডাটা যুক্ত রয়েছে। এটি আপনার গোপনীয়তা প্রকাশ করতে পারে। সোশ্যাল মিডিয়ায় শেয়ারের আগে `exiftool -all= photo.jpg` দিয়ে এটি মুছে দিন।")
+        patches.append("🛡️ [bold yellow]Privacy Alert:[/bold yellow] The photo contains accurate GPS metadata. This could expose your privacy. Before sharing on social media, remove it using exiftool -all= photo.jpg.")
     
     if "🚨 SUSPICIOUS!" in str(report_data.get("🛡️ Steganography Payload Check")):
-        patches.append("🚨 [bold red]Stego Payload Detected:[/bold red] ফাইলের EOF ট্যাগের পর অতিরিক্ত ক্ষতিকর বা গোপন ডেটা পে-লোড পাওয়া গেছে। ফাইলটি এনালাইসিস করে আলাদা করুন।")
+        patches.append("🚨 [bold red]Stego Payload Detected:[/bold red] Extra malicious or hidden payload data was found after the file's EOF tag. Analyze and isolate the file.")
 
     if not patches:
-        patches.append("🟢 [bold green]Security Check Passed:[/bold green] ফাইলের অবকাঠামোতে তাত্ক্ষণিক কোনো সিকিউরিটি ঝুঁকি বা মেটাডাটা লিক পাওয়া যায়নি।")
+        patches.append("🟢 [bold green]Security Check Passed:[/bold green] No immediate security risks or metadata leaks were found in the file structure.")
         
     return patches
 
@@ -244,13 +244,13 @@ def save_evidence_report(file_name, report_data):
     timestamp = time.strftime("%Y%m%d_%H%M%S")
     base_name = os.path.splitext(file_name)[0]
 
-    console.print("\n[bold yellow]📄 রিপোর্ট সেভ করার অপশন বেছে নিন:[/bold yellow]")
+    console.print("\n[bold yellow]📄 Select the option to save the report:[/bold yellow]")
     console.print("[1] 📝 Text Evidence Report (.txt)")
     console.print("[2] 📊 Structured JSON Artifact (.json)")
-    console.print("[3] ⚡ উভয় ফরম্যাটে সেভ (TXT + JSON)")
-    console.print("[4] ❌ স্কিপ করুন (Save Skip)")
+    console.print("[3] ⚡ Save in both formats (TXT + JSON)")
+    console.print("[4] ❌ Skip — Got it! (Save Skip)")
 
-    choice = Prompt.ask("পছন্দ নির্বাচন করুন", choices=["1", "2", "3", "4"], default="1")
+    choice = Prompt.ask("Please select an option", choices=["1", "2", "3", "4"], default="1")
     if choice == "4": return
 
     if choice in ["1", "3"]:
@@ -263,7 +263,7 @@ def save_evidence_report(file_name, report_data):
             for k, v in report_data.items():
                 f.write(f"{k:<38} : {v}\n")
             f.write("\n" + "="*70 + "\n")
-        console.print(f"[bold green]✅ Text রিপোর্ট সফলভাবে সেভ হয়েছে:[/bold green] [cyan]{txt_path}[/cyan]")
+        console.print(f"[bold green]✅ The text report has been saved successfully:[/bold green] [cyan]{txt_path}[/cyan]")
 
     if choice in ["2", "3"]:
         json_path = os.path.join(output_dir, f"DFIR_Report_{base_name}_{timestamp}.json")
@@ -275,12 +275,12 @@ def save_evidence_report(file_name, report_data):
         }
         with open(json_path, "w", encoding="utf-8") as f:
             json.dump(json_output, f, indent=4, ensure_ascii=False)
-        console.print(f"[bold green]✅ JSON রিপোর্ট সফলভাবে সেভ হয়েছে:[/bold green] [cyan]{json_path}[/cyan]")
+        console.print(f"[bold green]✅ The JSON report has been saved successfully:[/bold green] [cyan]{json_path}[/cyan]")
 
 def analyze_forensic_artifacts(file_path, mode="2"):
     clean_path = file_path.strip('"').strip("'").strip()
     if not os.path.exists(clean_path):
-        console.print("\n[bold red]❌ ফাইলটি পাওয়া যায়নি! দয়া করে ফাইল পাথটি পুনরায় চেক করুন।[/bold red]\n")
+        console.print("\n[bold red]❌ The file was not found! Please check the file path again।[/bold red]\n")
         return
 
     file_name = os.path.basename(clean_path)
@@ -439,7 +439,7 @@ def analyze_forensic_artifacts(file_path, mode="2"):
     # 5. Security Recommendations Panel
     patches = generate_security_patches(report_data)
     patch_panel_content = "\n".join(patches)
-    console.print(Panel(patch_panel_content, title="💡 Forensic & Security Recommendations", border_style="bright_yellow"))
+    console.print(Panel(patch_panel_content, title=" 💡 Forensic & Security Recommendations", border_style="bright_yellow"))
 
     # Save Option
     save_evidence_report(file_name, report_data)
@@ -447,11 +447,11 @@ def analyze_forensic_artifacts(file_path, mode="2"):
 def batch_scan_directory(dir_path):
     clean_dir = dir_path.strip('"').strip("'").strip()
     if not os.path.isdir(clean_dir):
-        console.print("\n[bold red]❌ এটি কোনো সঠিক ডিরেক্টরি/ফোল্ডার পাথ নয়![/bold red]\n")
+        console.print("\n[bold red] ❌ This is not a valid directory/folder path![/bold red]\n")
         return
     
     files = [os.path.join(clean_dir, f) for f in os.listdir(clean_dir) if os.path.isfile(os.path.join(clean_dir, f))]
-    console.print(f"\n[bold green]📁 ফোল্ডারে মোট {len(files)} টি ফাইল পাওয়া গেছে। স্ক্যানিং শুরু হচ্ছে...[/bold green]\n")
+    console.print(f"\n[bold green] 📁 A total of {len(files)} files were found in the folder. Starting scan...[/bold green]\n")
     
     for f in files:
         console.print(f"\n[bold cyan]------------------ Scanning: {os.path.basename(f)} ------------------[/bold cyan]")
@@ -462,26 +462,26 @@ def main():
         clear_screen()
         print_cyber_banner()
 
-        console.print("[bold yellow]🎯 অ্যানালাইসিস মোড নির্বাচন করুন:[/bold yellow]")
-        console.print("[1] ⚡ Quick Triage Mode (দ্রুত বেসিক ফাইল সিস্টেম স্ক্যান)")
-        console.print("[2] 🕵️ Deep Forensic & Stego Mode (সম্পূর্ণ EXIF, IOC, GPS, Flash & Payload Detection)")
-        console.print("[3] 📦 Batch Directory Scan (একটি ডিরেক্টরির সকল ফাইল স্ক্যান)")
-        console.print("[4] ❌ প্রোগাম থেকে বের হয়ে যান (Exit)")
+        console.print("[bold yellow] 🎯 Select analysis mode:[/bold yellow]")
+        console.print(" [1] ⚡ Quick Triage Mode (Quick basic file system scan)")
+        console.print(" [2] 🕵️ Deep Forensic & Stego Mode (All EXIF, IOC, GPS, Flash Etc.)")
+        console.print(" [3] 📦 Batch Directory Scan (Scan all files in a directory)")
+        console.print(" [4] ❌ Exit the program (Exit)")
 
-        mode = Prompt.ask("\nআপনার পছন্দ নির্বাচন করুন", choices=["1", "2", "3", "4"], default="2")
+        mode = Prompt.ask("\n Choose your option", choices=["1", "2", "3", "4"], default="2")
 
         if mode == "4":
-            console.print("\n[bold cyan]DFIR Studio সফলভাবে বন্ধ করা হয়েছে। ধন্যবাদ![/bold cyan]\n")
+            console.print("\n[bold cyan] DFIR Studio has been closed successfully. Thank you![/bold cyan]\n")
             break
         elif mode in ["1", "2"]:
-            target_path = Prompt.ask("[bold yellow]📂 এভিডেন্স ফাইলের পাথ দিন (File Path)[/bold yellow]")
+            target_path = Prompt.ask("[bold yellow] 📂 Enter the evidence file path (File Path)[/bold yellow]")
             analyze_forensic_artifacts(target_path, mode=mode)
         elif mode == "3":
-            dir_path = Prompt.ask("[bold yellow]📂 ফোল্ডারের পাথ দিন (Directory Path)[/bold yellow]")
+            dir_path = Prompt.ask("[bold yellow] 📂 Provide the directory path (Directory Path)[/bold yellow]")
             batch_scan_directory(dir_path)
 
         console.print("\n" + "─"*75)
-        Prompt.ask("[bold green]প্রধান মেনুতে ফিরে যেতে [Enter] চাপুন...[/bold green]")
+        Prompt.ask("[bold green] Press [Enter] to return to the main menu...[/bold green]")
 
 if __name__ == "__main__":
     main()
